@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery Custom Validation</title>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Login Form with Custom Validation</h2>
+
+  <form id="login">
+    <input type="text" id="user" placeholder="Username"><br><br>
+    <input type="password" id="pass" placeholder="Password"><br><br>
+    <button type="submit">Login</button>
+  </form>
+
+  <script>
+    $("#login").submit(function(e) {
+      e.preventDefault(); // stop default submission
+
+      if ($("#user").val().trim() === "" || $("#pass").val().trim() === "") {
+        alert("Please fill in all fields");
+      } else {
+        alert("Login successful!");
+      }
+    });
+  </script>
+</body>
+</html>
