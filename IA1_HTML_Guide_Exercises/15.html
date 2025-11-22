@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registration Form</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+    }
+    .error {
+      border: 2px solid red;
+      background-color: #ffe6e6;
+    }
+    .field {
+      margin-bottom: 15px;
+    }
+    label {
+      display: block;
+      margin-bottom: 5px;
+    }
+  </style>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Registration Form</h2>
+
+  <form id="registerForm">
+    <!-- Username -->
+    <div class="field">
+      <label for="username">Username:</label>
+      <input type="text" id="username" placeholder="Enter username">
+    </div>
+
+    <!-- Email -->
+    <div class="field">
+      <label for="email">Email:</label>
+      <input type="email" id="email" placeholder="Enter email">
+    </div>
+
+    <!-- Password -->
+    <div class="field">
+      <label for="password">Password:</label>
+      <input type="password" id="password" placeholder="Enter password">
+      <button type="button" id="togglePwd">Show/Hide</button>
+    </div>
+
+    <!-- Confirm Password -->
+    <div class="field">
+      <label for="confirm">Confirm Password:</label>
+      <input type="password" id="confirm" placeholder="Re-enter password">
+    </div>
+
+    <!-- Gender -->
+    <div class="field">
+      <p>Gender:</p>
+      <input type="radio" id="male" name="gender" value="male">
+      <label for="male">Male</label>
+      <input type="radio" id="female" name="gender" value="female">
+      <label for="female">Female</label>
+    </div>
+
+    <!-- Interests -->
+    <div class="field">
+      <p>Interests:</p>
+      <input type="checkbox" id="html" value="HTML">
+      <label for="html">HTML</label>
+      <input type="checkbox" id="css" value="CSS">
+      <label for="css">CSS</label>
+      <input type="checkbox" id="js" value="JS">
+      <label for="js">JavaScript</label>
+    </div>
+
+    <!-- Country -->
+    <div class="field">
+      <label for="country">Country:</label>
+      <select id="country">
+        <option value="">-- Select country --</option>
+        <option value="ph">Philippines</option>
+        <option value="us">United States</option>
+        <option value="jp">Japan</option>
+      </select>
+    </div>
+
+    <!-- Bio -->
+    <div class="field">
+      <label for="bio">Bio (max 150 chars):</label>
+      <textarea id="bio" maxlength="150" rows="4" cols="40"></textarea>
+      <p id="count">0/150</p>
+    </div>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    // Toggle Password
+    $("#togglePwd").click(function() {
+      let pwd = $("#password");
+      pwd.attr("type", pwd.attr("type") === "password" ? "text" : "password");
+    });
+
+    // Live Character Count
+    $("#bio").on("input", function() {
+      $("#count").text($(this).val().length + "/150");
+    });
+
+    // Validation
+    $("#registerForm").submit(function(e) {
+      e.preventDefault();
+      let valid = true;
+
+      // Reset error styles
+      $("input, textarea, select").removeClass("error");
+
+      // Check required fields
+      if ($("#username").val().trim() === "") { $("#username").addClass("error"); valid = false; }
+      if ($("#email").val().trim() === "") { $("#email").addClass("error"); valid = false; }
+      if ($("#password").val().trim() === "") { $("#password").addClass("error"); valid = false; }
+      if ($("#confirm").val().trim() === "") { $("#confirm").addClass("error"); valid = false; }
+      if (!$("input[name='gender']:checked").val()) { alert("Please select gender"); valid = false; }
+      if ($("#country").val() === "") { $("#country").addClass("error"); valid = false; }
+
+      // Check password match
+      if ($("#password").val() !== $("#confirm").val()) {
+        alert("Passwords do not match!");
+        $("#confirm").addClass("error");
+        valid = false;
+      }
+
+      if (valid) {
+        alert("Registration Successful!");
+      } else {
+        alert("Please fix the errors before submitting.");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,14 @@
+<form>
+  <h2>Message</h2>
+  <textarea id="message" rows="4" cols="30"></textarea><br>
+  <span id="count">0</span> characters
+</form>
+
+<script>
+  const textarea = document.getElementById('message');
+  const count = document.getElementById('count');
+
+  textarea.addEventListener('input', () => {
+    count.textContent = textarea.value.length;
+  });
+</script>

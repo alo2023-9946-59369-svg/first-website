@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery Show/Hide Password</title>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>jQuery Password Toggle Example</h2>
+
+  <label for="pwd">Password:</label>
+  <input type="password" id="pwd" placeholder="Enter password">
+  <button type="button" id="toggle">Show/Hide</button>
+
+  <script>
+    $("#toggle").click(function() {
+      let pwd = $("#pwd");
+      if (pwd.attr("type") === "password") {
+        pwd.attr("type", "text");
+      } else {
+        pwd.attr("type", "password");
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercise 11 - jQuery Show/Hide Password</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>Password Toggle (jQuery)</h2>
+  <input type="password" id="password" placeholder="Enter password">
+  <input type="checkbox" id="toggle"> Show Password
+
+  <script>
+    $("#toggle").on("click", function(){
+      let field = $("#password");
+      field.attr("type", field.attr("type") === "password" ? "text" : "password");
+    });
+  </script>
+</body>
+</html>

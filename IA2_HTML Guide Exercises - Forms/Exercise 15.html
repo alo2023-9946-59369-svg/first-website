@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Exercise 15 - Registration Form</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <style>
+    .error { border: 2px solid red; }
+  </style>
+</head>
+<body>
+  <form id="regForm">
+    <h2>Registration Form</h2>
+
+    <label>Username:</label>
+    <input type="text" id="username" required><br><br>
+
+    <label>Email:</label>
+    <input type="email" id="email" required><br><br>
+
+    <label>Password:</label>
+    <input type="password" id="password" required>
+    <input type="checkbox" id="showPwd"> Show<br><br>
+
+    <label>Confirm Password:</label>
+    <input type="password" id="confirm" required><br><br>
+
+    <label>Gender:</label>
+    <input type="radio" name="gender" value="male"> Male
+    <input type="radio" name="gender" value="female"> Female<br><br>
+
+    <label>Interests:</label><br>
+    <input type="checkbox" value="coding"> Coding
+    <input type="checkbox" value="sports"> Sports
+    <input type="checkbox" value="music"> Music<br><br>
+
+    <label>Bio:</label><br>
+    <textarea id="bio" rows="4" cols="30"></textarea><br>
+    <span id="charCount">0</span> characters<br><br>
+
+    <button type="submit">Register</button>
+  </form>
+
+  <script>
+    // Show/hide password
+    $("#showPwd").on("click", function(){
+      let pwd = $("#password");
+      pwd.attr("type", pwd.attr("type") === "password" ? "text" : "password");
+    });
+
+    // Live character count
+    $("#bio").on("input", function(){
+      $("#charCount").text($(this).val().length);
+    });
+
+    // Validation
+    $("#regForm").submit(function(e){
+      e.preventDefault();
+      let valid = true;
+
+      $("#regForm input[required], #regForm textarea[required]").each(function(){
+        if($(this).val().trim() === ""){
+          $(this).addClass("error");
+          valid = false;
+        } else {
+          $(this).removeClass("error");
+        }
+      });
+
+      if($("#password").val() !== $("#confirm").val()){
+        alert("Passwords do not match!");
+        valid = false;
+      }
+
+      if(valid){
+        alert("Registration successful!");
+      }
+    });
+  </script>
+</body>
+</html>

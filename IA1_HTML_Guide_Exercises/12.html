@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>jQuery Live Character Count</title>
+  <!-- jQuery CDN -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+  <h2>jQuery Character Counter</h2>
+
+  <label for="bio">Your Bio (max 100 characters):</label><br>
+  <textarea id="bio" maxlength="100" rows="4" cols="40" placeholder="Write something..."></textarea>
+  <p id="count">0/100</p>
+
+  <script>
+    $("#bio").on("input", function() {
+      $("#count").text($(this).val().length + "/100");
+    });
+  </script>
+</body>
+</html>
